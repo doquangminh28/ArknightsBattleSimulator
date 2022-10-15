@@ -16,13 +16,10 @@ def account_login():
     data = request.data
     headers = dict(request.headers)
     headers["Host"] = "gs.arknights.global"
-    jsonResponse = requests.post('https://gs.arknights.global:8443/account/login',
+    playerData = requests.post('https://gs.arknights.global:8443/account/login',
         headers=headers,
-        json=request.json,
-        verify=False
-    )
-    print(jsonResponse.text)
-    playerData = jsonResponse.json()
+        json=request.json
+    ).json()
     secret = playerData["secret"]
     uid = playerData["uid"]
 
